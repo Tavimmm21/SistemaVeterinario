@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using SistemaVeterinario.Services;
+using SistemaVeterinario.Views;
 
 namespace SistemaVeterinario
 {
@@ -17,6 +18,7 @@ namespace SistemaVeterinario
                 });
 
             builder.Services.AddSingleton<DatabaseService>();
+            builder.Services.AddTransient<ClientesPrincipal>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
