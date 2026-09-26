@@ -27,5 +27,12 @@ namespace SistemaVeterinario.Models
         // FK -> tblclientes (cliid)
         [Column("cliid")]
         public int ClienteId { get; set; }
+
+        // Somente exibição (não persistido) - preenchido ao carregar a lista
+        [Ignore]
+        public string EspecieNome { get; set; } = string.Empty;
+
+        [Ignore]
+        public string ClienteNome { get; set; } = string.Empty;
     }
 }
