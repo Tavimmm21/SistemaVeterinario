@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
 namespace SistemaVeterinario.Models
 {
+    [Table("tblclientes")]
     public class Cliente
     {
-        // Chave Primária (cliid: int)
+        [PrimaryKey, AutoIncrement, Column("cliid")]
         public int Id { get; set; }
 
-        // Nome do cliente (clinome: varchar 50)
-        public string Nome { get; set; }
+        [Column("clinome"), MaxLength(50), NotNull]
+        public string Nome { get; set; } = string.Empty;
 
-        // CPF do cliente (clicpf: decimal 11)
+        [Column("clicpf")]
         public decimal Cpf { get; set; }
 
-        // Email (cliemail: varchar 100)
-        public string Email { get; set; }
+        [Column("cliemail"), MaxLength(100)]
+        public string Email { get; set; } = string.Empty;
 
-        // Data de Cadastro (clidatacadastro: date)
+        [Column("clidatacadastro")]
         public DateTime DataCadastro { get; set; }
     }
 }

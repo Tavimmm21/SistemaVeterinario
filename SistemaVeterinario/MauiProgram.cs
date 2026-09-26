@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SistemaVeterinario.Services;
 
 namespace SistemaVeterinario
 {
@@ -14,6 +15,8 @@ namespace SistemaVeterinario
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<DatabaseService>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

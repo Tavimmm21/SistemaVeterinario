@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
 namespace SistemaVeterinario.Models
 {
+    [Table("tblanimais")]
     public class Animal
     {
-        // Chave Primária (anid: int)
+        [PrimaryKey, AutoIncrement, Column("anid")]
         public int Id { get; set; }
 
-        // Nome do animal (aninome: varchar 50)
-        public string Nome { get; set; }
+        [Column("aninome"), MaxLength(50), NotNull]
+        public string Nome { get; set; } = string.Empty;
 
-        // Apelido (aniapelido: varchar 25)
-        public string Apelido { get; set; }
+        [Column("aniapelido"), MaxLength(25)]
+        public string Apelido { get; set; } = string.Empty;
 
-        // Data de nascimento (anidatanasc: date)
+        [Column("anidatanasc")]
         public DateTime DataNascimento { get; set; }
 
-        // Observações (anobservacoes: varchar 500)
-        public string Observacoes { get; set; }
+        [Column("anobservacoes"), MaxLength(500)]
+        public string Observacoes { get; set; } = string.Empty;
 
-        // --- CHAVES ESTRANGEIRAS ---
-
-        // FK da Espécie (espid: int)
+        // FK -> tblespecies (espid)
+        [Column("espid")]
         public int EspecieId { get; set; }
 
-        // FK do Cliente/Dono (cliid: int)
+        // FK -> tblclientes (cliid)
+        [Column("cliid")]
         public int ClienteId { get; set; }
     }
 }

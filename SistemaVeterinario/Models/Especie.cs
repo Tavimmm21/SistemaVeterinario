@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
 namespace SistemaVeterinario.Models
 {
+    [Table("tblespecies")]
     public class Especie
     {
-        // Chave Primária (espid: int)
+        [PrimaryKey, AutoIncrement, Column("espid")]
         public int Id { get; set; }
 
-        // Nome da espécie (espnome: varchar 50)
-        public string Nome { get; set; }
+        [Column("espnome"), MaxLength(50), NotNull]
+        public string Nome { get; set; } = string.Empty;
     }
 }
