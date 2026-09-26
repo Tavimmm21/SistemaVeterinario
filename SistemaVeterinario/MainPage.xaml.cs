@@ -1,24 +1,25 @@
-﻿namespace SistemaVeterinario
+namespace SistemaVeterinario
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private async void OnClientesClicked(object sender, EventArgs e)
         {
-            count++;
+            await Shell.Current.GoToAsync("//ClientesPage");
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private async void OnAnimaisClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//AnimaisPage");
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void OnEspeciesClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//EspeciesPage");
         }
     }
 }

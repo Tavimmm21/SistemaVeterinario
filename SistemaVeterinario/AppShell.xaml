@@ -4,11 +4,54 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:SistemaVeterinario"
-    Title="SistemaVeterinario">
+    xmlns:views="clr-namespace:SistemaVeterinario.Views"
+    Title="Sistema Veterinário"
+    FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#512BD4" HeightRequest="140" Padding="20">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                <Label Text="🐾 Sistema Veterinário"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+                <Label Text="Gestão de Clientes, Animais e Espécies"
+                       FontSize="13"
+                       TextColor="White" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Grid Padding="20,12" BackgroundColor="#EEEEEE">
+            <Label Text="Versão 1.0 • Projeto Acadêmico"
+                   FontSize="12"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+        </Grid>
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem Title="Início">
+        <ShellContent
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <TabBar>
+        <ShellContent
+            Title="Clientes"
+            ContentTemplate="{DataTemplate views:ClientesPage}"
+            Route="ClientesPage" />
+
+        <ShellContent
+            Title="Animais"
+            ContentTemplate="{DataTemplate views:AnimaisPage}"
+            Route="AnimaisPage" />
+
+        <ShellContent
+            Title="Espécies"
+            ContentTemplate="{DataTemplate views:EspeciesPage}"
+            Route="EspeciesPage" />
+    </TabBar>
 
 </Shell>
