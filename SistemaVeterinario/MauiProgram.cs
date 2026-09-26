@@ -19,6 +19,7 @@ namespace SistemaVeterinario
 
             builder.Services.AddSingleton<DatabaseService>();
             builder.Services.AddTransient<ClientesPrincipal>();
+            builder.Services.AddTransient<EspeciesPrincipal>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
