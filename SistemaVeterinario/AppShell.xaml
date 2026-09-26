@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:SistemaVeterinario"
     xmlns:views="clr-namespace:SistemaVeterinario.Views"
-    Title="Sistema Veterinário"
-    FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarIsVisible="True"
+    Title="Sistema Veterinário">
 
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="#512BD4" HeightRequest="140" Padding="20">
@@ -31,27 +32,36 @@
         </Grid>
     </Shell.FlyoutFooter>
 
-    <FlyoutItem Title="Início">
-        <ShellContent
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
+    <FlyoutItem Title="Menu Principal" FlyoutDisplayOptions="AsMultipleItems">
+
+        <Tab Title="Home">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+        </Tab>
+
+        <Tab Title="Clientes">
+            <ShellContent
+                Title="Clientes"
+                ContentTemplate="{DataTemplate views:ClientesPrincipal}"
+                Route="ClientesPrincipal" />
+        </Tab>
+
+        <Tab Title="Animais">
+            <ShellContent
+                Title="Animais"
+                ContentTemplate="{DataTemplate views:AnimaisPrincipal}"
+                Route="AnimaisPrincipal" />
+        </Tab>
+
+        <Tab Title="Espécies">
+            <ShellContent
+                Title="Espécies"
+                ContentTemplate="{DataTemplate views:EspeciesPrincipal}"
+                Route="EspeciesPrincipal" />
+        </Tab>
+
     </FlyoutItem>
-
-    <TabBar>
-        <ShellContent
-            Title="Clientes"
-            ContentTemplate="{DataTemplate views:ClientesPage}"
-            Route="ClientesPage" />
-
-        <ShellContent
-            Title="Animais"
-            ContentTemplate="{DataTemplate views:AnimaisPage}"
-            Route="AnimaisPage" />
-
-        <ShellContent
-            Title="Espécies"
-            ContentTemplate="{DataTemplate views:EspeciesPage}"
-            Route="EspeciesPage" />
-    </TabBar>
 
 </Shell>

@@ -1,8 +1,8 @@
 namespace SistemaVeterinario.Views
 {
-    public partial class ClientesPage : ContentPage
+    public partial class ClientesPrincipal : ContentPage
     {
-        public ClientesPage()
+        public ClientesPrincipal()
         {
             InitializeComponent();
         }

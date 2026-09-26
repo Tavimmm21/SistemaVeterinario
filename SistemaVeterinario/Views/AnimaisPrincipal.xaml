@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SistemaVeterinario.Views.ClientesPage"
-             Title="Clientes">
+             x:Class="SistemaVeterinario.Views.AnimaisPrincipal"
+             Title=":: ANIMAIS ::..">
 
     <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
-        <Label Text="Lista de Clientes"
+        <Label Text="Lista de Animais"
                FontSize="20"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
-        <Label Text="Em construção — o CRUD será implementado na próxima etapa (SQLite)."
+        <Label Text="Em construção — grid, pesquisa e botão Inserir chegam nas próximas etapas (SQLite)."
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center" />
     </VerticalStackLayout>
