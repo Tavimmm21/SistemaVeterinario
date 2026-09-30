@@ -62,6 +62,13 @@
                 Route="EspeciesPrincipal" />
         </Tab>
 
+        <Tab Title="Desenvolvedor">
+            <ShellContent
+                Title="Desenvolvedor"
+                ContentTemplate="{DataTemplate views:DesenvolvedorPage}"
+                Route="DesenvolvedorPage" />
+        </Tab>
+
     </FlyoutItem>
 
 </Shell>
