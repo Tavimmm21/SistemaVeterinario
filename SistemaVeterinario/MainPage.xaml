@@ -23,17 +23,20 @@
 
             <Button
                 x:Name="BtnClientes"
-                Text="👤  Clientes"
+                Text="🧑  Clientes"
+                FontSize="18"
                 Clicked="OnClientesClicked" />
 
             <Button
                 x:Name="BtnAnimais"
                 Text="🐾  Animais"
+                FontSize="18"
                 Clicked="OnAnimaisClicked" />
 
             <Button
                 x:Name="BtnEspecies"
                 Text="🐶  Espécies"
+                FontSize="18"
                 Clicked="OnEspeciesClicked" />
 
         </VerticalStackLayout>

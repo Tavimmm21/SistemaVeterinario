@@ -62,9 +62,9 @@
                 Route="EspeciesPrincipal" />
         </Tab>
 
-        <Tab Title="Desenvolvedor">
+        <Tab Title="Dev">
             <ShellContent
-                Title="Desenvolvedor"
+                Title="Dev"
                 ContentTemplate="{DataTemplate views:DesenvolvedorPage}"
                 Route="DesenvolvedorPage" />
         </Tab>
