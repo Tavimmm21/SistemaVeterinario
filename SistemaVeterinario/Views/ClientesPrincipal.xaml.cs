@@ -5,13 +5,13 @@ namespace SistemaVeterinario.Views
 {
     public partial class ClientesPrincipal : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly ClienteRepositorio _clienteRepositorio;
         private List<Cliente> _todosClientes = new();
 
-        public ClientesPrincipal(DatabaseService databaseService)
+        public ClientesPrincipal(ClienteRepositorio clienteRepositorio)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _clienteRepositorio = clienteRepositorio;
         }
 
         protected override async void OnAppearing()
@@ -22,7 +22,7 @@ namespace SistemaVeterinario.Views
 
         private async Task CarregarClientesAsync()
         {
-            _todosClientes = await _databaseService.GetClientesAsync();
+            _todosClientes = await _clienteRepositorio.ListarAsync();
             ColecaoClientes.ItemsSource = _todosClientes;
             EntryPesquisar.Text = string.Empty;
         }
@@ -40,14 +40,14 @@ namespace SistemaVeterinario.Views
 
         private async void OnInserirClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ClientesInserir(_databaseService));
+            await Navigation.PushAsync(new ClientesInserir(_clienteRepositorio));
         }
 
         private async void OnAlterarClicked(object sender, EventArgs e)
         {
             if (sender is Button botao && botao.CommandParameter is Cliente cliente)
             {
-                await Navigation.PushAsync(new ClientesAlterar(_databaseService, cliente));
+                await Navigation.PushAsync(new ClientesAlterar(_clienteRepositorio, cliente));
             }
         }
 
@@ -64,7 +64,7 @@ namespace SistemaVeterinario.Views
                 if (!confirmar)
                     return;
 
-                await _databaseService.ExcluirClienteAsync(cliente);
+                await _clienteRepositorio.ExcluirAsync(cliente);
                 await CarregarClientesAsync();
             }
         }

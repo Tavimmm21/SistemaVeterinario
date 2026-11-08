@@ -5,15 +5,16 @@ namespace SistemaVeterinario.Views
 {
     public partial class EspeciesAlterar : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly EspecieRepositorio _especieRepositorio;
         private readonly Especie _especie;
 
-        public EspeciesAlterar(DatabaseService databaseService, Especie especie)
+        public EspeciesAlterar(EspecieRepositorio especieRepositorio, Especie especie)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _especieRepositorio = especieRepositorio;
             _especie = especie;
 
+            EntryId.Text = especie.Id.ToString();
             EntryNome.Text = especie.Nome;
         }
 
@@ -27,7 +28,7 @@ namespace SistemaVeterinario.Views
 
             _especie.Nome = EntryNome.Text.Trim();
 
-            await _databaseService.SalvarEspecieAsync(_especie);
+            await _especieRepositorio.AlterarAsync(_especie);
             await Navigation.PopAsync();
         }
 

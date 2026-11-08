@@ -5,12 +5,12 @@ namespace SistemaVeterinario.Views
 {
     public partial class EspeciesInserir : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly EspecieRepositorio _especieRepositorio;
 
-        public EspeciesInserir(DatabaseService databaseService)
+        public EspeciesInserir(EspecieRepositorio especieRepositorio)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _especieRepositorio = especieRepositorio;
         }
 
         private async void OnSalvarClicked(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace SistemaVeterinario.Views
                 Nome = EntryNome.Text.Trim()
             };
 
-            await _databaseService.SalvarEspecieAsync(especie);
+            await _especieRepositorio.InserirAsync(especie);
             await Navigation.PopAsync();
         }
 

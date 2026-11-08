@@ -5,14 +5,14 @@ namespace SistemaVeterinario.Views
 {
     public partial class AnimaisInserir : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly AnimalRepositorio _animalRepositorio;
         private readonly List<Cliente> _clientes;
         private readonly List<Especie> _especies;
 
-        public AnimaisInserir(DatabaseService databaseService, List<Cliente> clientes, List<Especie> especies)
+        public AnimaisInserir(AnimalRepositorio animalRepositorio, List<Cliente> clientes, List<Especie> especies)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _animalRepositorio = animalRepositorio;
             _clientes = clientes;
             _especies = especies;
 
@@ -51,7 +51,7 @@ namespace SistemaVeterinario.Views
                 ClienteId = _clientes[PickerCliente.SelectedIndex].Id
             };
 
-            await _databaseService.SalvarAnimalAsync(animal);
+            await _animalRepositorio.InserirAsync(animal);
             await Navigation.PopAsync();
         }
 

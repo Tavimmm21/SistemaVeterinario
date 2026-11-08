@@ -18,6 +18,9 @@ namespace SistemaVeterinario
                 });
 
             builder.Services.AddSingleton<DatabaseService>();
+            builder.Services.AddSingleton<ClienteRepositorio>();
+            builder.Services.AddSingleton<EspecieRepositorio>();
+            builder.Services.AddSingleton<AnimalRepositorio>();
             builder.Services.AddTransient<ClientesPrincipal>();
             builder.Services.AddTransient<EspeciesPrincipal>();
             builder.Services.AddTransient<AnimaisPrincipal>();

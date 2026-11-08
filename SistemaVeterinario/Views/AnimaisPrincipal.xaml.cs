@@ -5,13 +5,17 @@ namespace SistemaVeterinario.Views
 {
     public partial class AnimaisPrincipal : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly AnimalRepositorio _animalRepositorio;
+        private readonly ClienteRepositorio _clienteRepositorio;
+        private readonly EspecieRepositorio _especieRepositorio;
         private List<Animal> _todosAnimais = new();
 
-        public AnimaisPrincipal(DatabaseService databaseService)
+        public AnimaisPrincipal(AnimalRepositorio animalRepositorio, ClienteRepositorio clienteRepositorio, EspecieRepositorio especieRepositorio)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _animalRepositorio = animalRepositorio;
+            _clienteRepositorio = clienteRepositorio;
+            _especieRepositorio = especieRepositorio;
         }
 
         protected override async void OnAppearing()
@@ -22,9 +26,9 @@ namespace SistemaVeterinario.Views
 
         private async Task CarregarAnimaisAsync()
         {
-            var animais = await _databaseService.GetAnimaisAsync();
-            var clientes = await _databaseService.GetClientesAsync();
-            var especies = await _databaseService.GetEspeciesAsync();
+            var animais = await _animalRepositorio.ListarAsync();
+            var clientes = await _clienteRepositorio.ListarAsync();
+            var especies = await _especieRepositorio.ListarAsync();
 
             foreach (var animal in animais)
             {
@@ -50,8 +54,8 @@ namespace SistemaVeterinario.Views
 
         private async void OnInserirClicked(object sender, EventArgs e)
         {
-            var clientes = await _databaseService.GetClientesAsync();
-            var especies = await _databaseService.GetEspeciesAsync();
+            var clientes = await _clienteRepositorio.ListarAsync();
+            var especies = await _especieRepositorio.ListarAsync();
 
             if (clientes.Count == 0 || especies.Count == 0)
             {
@@ -62,16 +66,16 @@ namespace SistemaVeterinario.Views
                 return;
             }
 
-            await Navigation.PushAsync(new AnimaisInserir(_databaseService, clientes, especies));
+            await Navigation.PushAsync(new AnimaisInserir(_animalRepositorio, clientes, especies));
         }
 
         private async void OnAlterarClicked(object sender, EventArgs e)
         {
             if (sender is Button botao && botao.CommandParameter is Animal animal)
             {
-                var clientes = await _databaseService.GetClientesAsync();
-                var especies = await _databaseService.GetEspeciesAsync();
-                await Navigation.PushAsync(new AnimaisAlterar(_databaseService, animal, clientes, especies));
+                var clientes = await _clienteRepositorio.ListarAsync();
+                var especies = await _especieRepositorio.ListarAsync();
+                await Navigation.PushAsync(new AnimaisAlterar(_animalRepositorio, animal, clientes, especies));
             }
         }
 
@@ -88,7 +92,7 @@ namespace SistemaVeterinario.Views
                 if (!confirmar)
                     return;
 
-                await _databaseService.ExcluirAnimalAsync(animal);
+                await _animalRepositorio.ExcluirAsync(animal);
                 await CarregarAnimaisAsync();
             }
         }

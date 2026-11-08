@@ -7,6 +7,9 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
 
+            <Label Text="Id" FontAttributes="Bold" />
+            <Entry x:Name="EntryId" IsReadOnly="True" />
+
             <Label Text="Nome" FontAttributes="Bold" />
             <Entry x:Name="EntryNome" Placeholder="Ex: Canino, Felino, Ave..." />
 

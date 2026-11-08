@@ -5,13 +5,13 @@ namespace SistemaVeterinario.Views
 {
     public partial class EspeciesPrincipal : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly EspecieRepositorio _especieRepositorio;
         private List<Especie> _todasEspecies = new();
 
-        public EspeciesPrincipal(DatabaseService databaseService)
+        public EspeciesPrincipal(EspecieRepositorio especieRepositorio)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _especieRepositorio = especieRepositorio;
         }
 
         protected override async void OnAppearing()
@@ -22,7 +22,7 @@ namespace SistemaVeterinario.Views
 
         private async Task CarregarEspeciesAsync()
         {
-            _todasEspecies = await _databaseService.GetEspeciesAsync();
+            _todasEspecies = await _especieRepositorio.ListarAsync();
             ColecaoEspecies.ItemsSource = _todasEspecies;
             EntryPesquisar.Text = string.Empty;
         }
@@ -40,14 +40,14 @@ namespace SistemaVeterinario.Views
 
         private async void OnInserirClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EspeciesInserir(_databaseService));
+            await Navigation.PushAsync(new EspeciesInserir(_especieRepositorio));
         }
 
         private async void OnAlterarClicked(object sender, EventArgs e)
         {
             if (sender is Button botao && botao.CommandParameter is Especie especie)
             {
-                await Navigation.PushAsync(new EspeciesAlterar(_databaseService, especie));
+                await Navigation.PushAsync(new EspeciesAlterar(_especieRepositorio, especie));
             }
         }
 
@@ -64,7 +64,7 @@ namespace SistemaVeterinario.Views
                 if (!confirmar)
                     return;
 
-                await _databaseService.ExcluirEspecieAsync(especie);
+                await _especieRepositorio.ExcluirAsync(especie);
                 await CarregarEspeciesAsync();
             }
         }

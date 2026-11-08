@@ -5,12 +5,12 @@ namespace SistemaVeterinario.Views
 {
     public partial class ClientesInserir : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly ClienteRepositorio _clienteRepositorio;
 
-        public ClientesInserir(DatabaseService databaseService)
+        public ClientesInserir(ClienteRepositorio clienteRepositorio)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _clienteRepositorio = clienteRepositorio;
             DatePickerCadastro.Date = DateTime.Today;
         }
 
@@ -36,7 +36,7 @@ namespace SistemaVeterinario.Views
                 DataCadastro = DatePickerCadastro.Date
             };
 
-            await _databaseService.SalvarClienteAsync(cliente);
+            await _clienteRepositorio.InserirAsync(cliente);
             await Navigation.PopAsync();
         }
 

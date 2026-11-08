@@ -5,15 +5,16 @@ namespace SistemaVeterinario.Views
 {
     public partial class ClientesAlterar : ContentPage
     {
-        private readonly DatabaseService _databaseService;
+        private readonly ClienteRepositorio _clienteRepositorio;
         private readonly Cliente _cliente;
 
-        public ClientesAlterar(DatabaseService databaseService, Cliente cliente)
+        public ClientesAlterar(ClienteRepositorio clienteRepositorio, Cliente cliente)
         {
             InitializeComponent();
-            _databaseService = databaseService;
+            _clienteRepositorio = clienteRepositorio;
             _cliente = cliente;
 
+            EntryId.Text = cliente.Id.ToString();
             EntryNome.Text = cliente.Nome;
             EntryCpf.Text = cliente.Cpf.ToString();
             EntryEmail.Text = cliente.Email;
@@ -39,7 +40,7 @@ namespace SistemaVeterinario.Views
             _cliente.Email = EntryEmail.Text?.Trim() ?? string.Empty;
             _cliente.DataCadastro = DatePickerCadastro.Date;
 
-            await _databaseService.SalvarClienteAsync(_cliente);
+            await _clienteRepositorio.AlterarAsync(_cliente);
             await Navigation.PopAsync();
         }
 
