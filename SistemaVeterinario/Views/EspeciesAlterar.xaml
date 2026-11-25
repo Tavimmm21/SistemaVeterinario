@@ -13,6 +13,9 @@
             <Label Text="Nome" FontAttributes="Bold" />
             <Entry x:Name="EntryNome" Placeholder="Ex: Canino, Felino, Ave..." />
 
+            <Label Text="Data" FontAttributes="Bold" />
+            <DatePicker x:Name="DatePickerData" />
+
             <Button Text="Salvar"
                     Clicked="OnSalvarClicked"
                     Margin="0,20,0,0" />

@@ -28,10 +28,12 @@
                     <Grid ColumnDefinitions="*,Auto,Auto"
                           Padding="10"
                           BackgroundColor="#F2F2F2">
-                        <Label Grid.Column="0"
-                               Text="{Binding Nome}"
-                               FontAttributes="Bold"
-                               VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Column="0" Spacing="2" VerticalOptions="Center">
+                            <Label Text="{Binding Nome}" FontAttributes="Bold" />
+                            <Label Text="{Binding Data, StringFormat='Data: {0:dd/MM/yyyy}'}"
+                                   FontSize="12"
+                                   TextColor="Gray" />
+                        </VerticalStackLayout>
 
                         <Button Grid.Column="1"
                                 Text="Alterar"

@@ -16,6 +16,7 @@ namespace SistemaVeterinario.Views
 
             EntryId.Text = especie.Id.ToString();
             EntryNome.Text = especie.Nome;
+            DatePickerData.Date = especie.Data == default ? DateTime.Today : especie.Data;
         }
 
         private async void OnSalvarClicked(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace SistemaVeterinario.Views
             }
 
             _especie.Nome = EntryNome.Text.Trim();
+            _especie.Data = DatePickerData.Date;
 
             await _especieRepositorio.AlterarAsync(_especie);
             await Navigation.PopAsync();

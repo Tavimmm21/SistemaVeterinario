@@ -11,6 +11,7 @@ namespace SistemaVeterinario.Views
         {
             InitializeComponent();
             _especieRepositorio = especieRepositorio;
+            DatePickerData.Date = DateTime.Today;
         }
 
         private async void OnSalvarClicked(object sender, EventArgs e)
@@ -23,7 +24,8 @@ namespace SistemaVeterinario.Views
 
             var especie = new Especie
             {
-                Nome = EntryNome.Text.Trim()
+                Nome = EntryNome.Text.Trim(),
+                Data = DatePickerData.Date
             };
 
             await _especieRepositorio.InserirAsync(especie);

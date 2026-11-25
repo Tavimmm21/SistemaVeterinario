@@ -10,5 +10,8 @@ namespace SistemaVeterinario.Models
 
         [Column("espnome"), MaxLength(50), NotNull]
         public string Nome { get; set; } = string.Empty;
+
+        [Column("espdata")]
+        public DateTime Data { get; set; }
     }
 }
