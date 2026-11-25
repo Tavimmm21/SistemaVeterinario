@@ -12,6 +12,6 @@ namespace SistemaVeterinario.Models
         public string Nome { get; set; } = string.Empty;
 
         [Column("espdata")]
-        public DateTime Data { get; set; }
+        public DateTime? Data { get; set; }
     }
 }
